@@ -17,6 +17,13 @@ private:
 
 	UPROPERTY(VisibleDefaultsOnly)
 		class UCameraComponent* Camera;
+
+private:
+	UPROPERTY(VisibleDefaultsOnly)
+		class UCStatusComponent* Status;
+	UPROPERTY(VisibleDefaultsOnly)
+		class UCOptionComponent* Option;
+
 protected:
 	virtual void BeginPlay() override;
 
