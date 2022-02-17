@@ -7,7 +7,7 @@
 UENUM(BlueprintType)
 enum class EStateType : uint8
 {
-	IDLE, ROLL, BACKSTEP, MAX
+	IDLE, ROLL, BACKSTEP, EQUIP, MAX
 };
 
 DECLARE_DYNAMIC_MULTICAST_DELEGATE_TwoParams(FStateTypeChanged, EStateType, InPrevType, EStateType, InNewType);
@@ -24,6 +24,8 @@ public:
 		FORCEINLINE bool IsRollMode() { return Type == EStateType::ROLL; }
 	UFUNCTION(BlueprintPure)
 		FORCEINLINE bool IsBackstepMode() { return Type == EStateType::BACKSTEP; }
+	UFUNCTION(BlueprintPure)
+		FORCEINLINE bool IsEquipMode() { return Type == EStateType::EQUIP; }
 
 public:	
 	UCStateComponent();
@@ -31,6 +33,7 @@ public:
 	void SetIdleMode();
 	void SetRollMode();
 	void SetBackstepMode();
+	void SetEquipMode();
 
 protected:
 	virtual void BeginPlay() override;

@@ -26,11 +26,6 @@ void UCMontagesComponent::BeginPlay()
 			}
 		}
 	}
-	for (const FMontageData* data : Datas) {
-		if(!!data)
-			CLog::Log(data->AnimMontage->GetPathName());
-	}
-
 }
 
 void UCMontagesComponent::PlayRoll()
@@ -49,7 +44,6 @@ void UCMontagesComponent::PlayAnimMontage(EStateType InStateType)
 	CheckNull(character);
 	const FMontageData* data = Datas[(int32)InStateType];
 	if (!!data) {
-		CLog::Print(data->AnimMontage->GetName());
 		if (!!data->AnimMontage)
 			character->PlayAnimMontage(data->AnimMontage, data->PlayRate, data->StartSection);
 	}

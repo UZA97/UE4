@@ -9,7 +9,7 @@ public:
     static void GetAsset(T** OutObject, FString InPath)
     {
         ConstructorHelpers::FObjectFinder<T> asset(*InPath);
-        verifyf(asset.Succeeded(),L"Asset Not Found");
+        verifyf(asset.Succeeded(), L"Asset Not Found");
 
         *OutObject = asset.Object;
     }
@@ -24,13 +24,13 @@ public:
     }
 
     template<typename T>
-	static void GetClass(TSubclassOf<T>* OutClass, FString InPath)
-	{
-		ConstructorHelpers::FClassFinder<T> asset(*InPath);
-		verifyf(asset.Succeeded(), L"Class Not Found");
-			
-		*OutClass = asset.Class;
-	}
+    static void GetClass(TSubclassOf<T>* OutClass, FString InPath)
+    {
+        ConstructorHelpers::FClassFinder<T> asset(*InPath);
+        verifyf(asset.Succeeded(), L"Class Not Found");
+
+        *OutClass = asset.Class;
+    }
 
     template<typename T>
     static void CreateComponent(AActor* InActor, T** OutComponent, FName InName, USceneComponent* InParent = nullptr)
@@ -48,5 +48,11 @@ public:
     static void CreateActorComponent(AActor* InActor, T** OutComponent, FName InName)
     {
         *OutComponent = InActor->CreateDefaultSubobject<T>(InName);
+    }
+
+    template<typename T>
+    static T* GetComponent(AActor* InActor)
+    {
+        return Cast<T>(InActor->GetComponentByClass(T::StaticClass()));
     }
 };

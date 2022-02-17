@@ -28,6 +28,8 @@ private:
 		class UCStateComponent* State;
 	UPROPERTY(VisibleDefaultsOnly)
 		class UCMontagesComponent* Montage;
+	UPROPERTY(VisibleDefaultsOnly)
+		class UCActionComponent* Action;
 
 
 protected:
@@ -51,6 +53,9 @@ private:
 	void OffWalk();
 	void OnEvade();
 
+	void OnFist();
+	void OnOneHand();
+	void OnTwoHand();
 private:
 	void Begin_Backstep();
 	void Begin_Roll();

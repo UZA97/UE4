@@ -10,10 +10,16 @@ enum class EActionType : uint8
 	Unarmed, Fist, OneHand, TwoHand, Warp, Tornado, MagicBall, Max
 };
 
+DECLARE_DYNAMIC_MULTICAST_DELEGATE_TwoParams(FActionTypeChanged, EActionType, InPrevType, EActionType, InNewType);
+
 UCLASS( ClassGroup=(Custom), meta=(BlueprintSpawnableComponent) )
 class U03_GAME_API UCActionComponent : public UActorComponent
 {
 	GENERATED_BODY()
+
+private:
+	UPROPERTY(EditDefaultsOnly)
+		class UCActionData* Datas[(int32)EActionType::Max];
 
 public:
     UFUNCTION(BlueprintPure)
@@ -31,8 +37,6 @@ public:
 	UFUNCTION(BlueprintPure)
 		FORCEINLINE bool IsMagicBallMode() { return Type == EActionType::MagicBall; }
 
-
-
 public:	
 	UCActionComponent();
 
@@ -46,6 +50,13 @@ public:
 
 protected:
 	virtual void BeginPlay() override;
+
+private:
+	void SetMode(EActionType InType);
+	void ChangeType(EActionType InNewype);
+public:
+    UPROPERTY(BlueprintAssignable)
+		FActionTypeChanged OnActionTypeChanged;
 
 private:
 	EActionType Type;
