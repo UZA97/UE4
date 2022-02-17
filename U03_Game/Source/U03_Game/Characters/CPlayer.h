@@ -2,6 +2,7 @@
 
 #include "CoreMinimal.h"
 #include "GameFramework/Character.h"
+#include "Components/CStateComponent.h"
 #include "CPlayer.generated.h"
 
 UCLASS()
@@ -23,6 +24,11 @@ private:
 		class UCStatusComponent* Status;
 	UPROPERTY(VisibleDefaultsOnly)
 		class UCOptionComponent* Option;
+	UPROPERTY(VisibleDefaultsOnly)
+		class UCStateComponent* State;
+	UPROPERTY(VisibleDefaultsOnly)
+		class UCMontagesComponent* Montage;
+
 
 protected:
 	virtual void BeginPlay() override;
@@ -32,9 +38,28 @@ public:
 
 	virtual void SetupPlayerInputComponent(class UInputComponent* PlayerInputComponent) override;
 
+	// AxisEvent
 private:
 	void OnMoveForward(float Axis);
 	void OnMoveRight(float Axis);
 	void OnHorizontalLook(float Axis);
 	void OnVerticalLook(float Axis);
+
+	// ActionEvent
+private:
+	void OnWalk();
+	void OffWalk();
+	void OnEvade();
+
+private:
+	void Begin_Backstep();
+	void Begin_Roll();
+
+public:
+	void End_Backstep();
+	void End_Roll();
+
+private:
+	UFUNCTION()
+		void OnStateTypeChanged(EStateType InPrevType, EStateType InNewType);
 };
