@@ -1,9 +1,11 @@
 #include "CEquipment.h"
 #include "Global.h"
+#include "Characters/ICharacter.h"
 #include "GameFramework/Character.h"
 #include "Components/CStateComponent.h"
 #include "Components/CStatusComponent.h"
-
+#include "GameFramework/Character.h"
+#include "GameFramework/CharacterMovementComponent.h"
 
 ACEquipment::ACEquipment()
 {
@@ -31,6 +33,13 @@ void ACEquipment::Equip_Implementation()
 		Begin_Equip();
 		End_Equip();
 	}
+	if (Data.bPawnControl == true) {
+		OwnerCharacter->GetCharacterMovement()->bOrientRotationToMovement = false;
+		OwnerCharacter->bUseControllerRotationYaw = true;
+	}
+	IICharacter* character = Cast<IICharacter>(OwnerCharacter);
+	CheckNull(character);
+	character->ChangeColor(Color);
 }
 
 void ACEquipment::Begin_Equip_Implementation()
@@ -42,4 +51,13 @@ void ACEquipment::Begin_Equip_Implementation()
 void ACEquipment::End_Equip_Implementation()
 {
 	State->SetIdleMode();
+}
+
+void ACEquipment::Unequip_Implementation()
+{
+	OwnerCharacter->GetCharacterMovement()->bOrientRotationToMovement = true;
+	OwnerCharacter->bUseControllerRotationYaw = false;
+
+	if (OnUnequipmentDelegate.IsBound())
+		OnUnequipmentDelegate.Broadcast();
 }
