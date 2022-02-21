@@ -8,29 +8,36 @@ UCStateComponent::UCStateComponent()
 void UCStateComponent::BeginPlay()
 {
 	Super::BeginPlay();
+
 	
 }
 
-void UCStateComponent::SetIdleMode()
+void UCStateComponent::SetIdelMode()
 {
-	ChangeType(EStateType::IDLE);
+	ChangeType(EStateType::Idle);
 }
 
 void UCStateComponent::SetRollMode()
 {
-	ChangeType(EStateType::ROLL);
-
+	ChangeType(EStateType::Roll);
 }
 
 void UCStateComponent::SetBackstepMode()
 {
-	ChangeType(EStateType::BACKSTEP);
+	ChangeType(EStateType::Backstep);
 }
 
 void UCStateComponent::SetEquipMode()
 {
-	ChangeType(EStateType::EQUIP);
+	ChangeType(EStateType::Equip);
 }
+
+void UCStateComponent::SetActionMode()
+{
+	ChangeType(EStateType::Action);
+}
+
+
 void UCStateComponent::ChangeType(EStateType InNewType)
 {
 	EStateType prev = Type;

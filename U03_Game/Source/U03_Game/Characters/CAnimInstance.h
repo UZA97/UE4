@@ -13,9 +13,10 @@ class U03_GAME_API UCAnimInstance : public UAnimInstance
 protected:
 	UPROPERTY(BlueprintReadOnly, EditAnywhere)
 		float Speed;
-	
+
 	UPROPERTY(BlueprintReadOnly, EditAnywhere)
 		float Direction;
+
 	UPROPERTY(BlueprintReadOnly, EditAnywhere)
 		EActionType ActionType;
 

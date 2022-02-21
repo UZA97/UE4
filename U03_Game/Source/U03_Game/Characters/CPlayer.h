@@ -13,22 +13,27 @@ class U03_GAME_API ACPlayer : public ACharacter, public IICharacter
 
 public:
 	ACPlayer();
-private:
+
+private: //SceneComponent
 	UPROPERTY(VisibleDefaultsOnly)
 		class USpringArmComponent* SpringArm;
 
 	UPROPERTY(VisibleDefaultsOnly)
 		class UCameraComponent* Camera;
 
-private:
+private: //ActorComponent
 	UPROPERTY(VisibleDefaultsOnly)
 		class UCStatusComponent* Status;
+
 	UPROPERTY(VisibleDefaultsOnly)
 		class UCOptionComponent* Option;
+
 	UPROPERTY(VisibleDefaultsOnly)
 		class UCStateComponent* State;
+
 	UPROPERTY(VisibleDefaultsOnly)
-		class UCMontagesComponent* Montage;
+		class UCMontagesComponent* Montages;
+
 	UPROPERTY(VisibleDefaultsOnly)
 		class UCActionComponent* Action;
 
@@ -38,25 +43,27 @@ protected:
 
 public:	
 	virtual void Tick(float DeltaTime) override;
-
 	virtual void SetupPlayerInputComponent(class UInputComponent* PlayerInputComponent) override;
 
-	// AxisEvent
-private:
+private: //AxisEvent
 	void OnMoveForward(float Axis);
 	void OnMoveRight(float Axis);
 	void OnHorizontalLook(float Axis);
 	void OnVerticalLook(float Axis);
 
-	// ActionEvent
-private:
+
+private: //ActionEvent
 	void OnWalk();
 	void OffWalk();
+
 	void OnEvade();
 
 	void OnFist();
 	void OnOneHand();
 	void OnTwoHand();
+
+	void OnDoAction();
+
 private:
 	void Begin_Backstep();
 	void Begin_Roll();
@@ -71,7 +78,7 @@ public:
 private:
 	UFUNCTION()
 		void OnStateTypeChanged(EStateType InPrevType, EStateType InNewType);
-	
+
 private:
 	class UMaterialInstanceDynamic* BodyMaterial;
 	class UMaterialInstanceDynamic* LogoMaterial;

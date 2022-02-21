@@ -12,12 +12,16 @@ struct FEquipmentData
 public:
 	UPROPERTY(EditAnywhere)
 		class UAnimMontage* AnimMontage;
+
 	UPROPERTY(EditAnywhere)
-		float PlayRate =1.0f;
+		float PlayRate = 1.0f;
+
 	UPROPERTY(EditAnywhere)
 		FName StartSection;
+
 	UPROPERTY(EditAnywhere)
 		bool bCanMove = true;
+
 	UPROPERTY(EditAnywhere)
 		bool bPawnControl = true;
 };
@@ -30,29 +34,35 @@ struct FDoActionData : public FEquipmentData
 public:
 	UPROPERTY(EditAnywhere)
 		float Power = 5.0f;
+
 	UPROPERTY(EditAnywhere)
 		float HitStop;
+
 	UPROPERTY(EditAnywhere)
 		class UParticleSystem* Effect;
+
 	UPROPERTY(EditAnywhere)
 		FTransform EffectTransform;
+
 	UPROPERTY(EditAnywhere)
 		TSubclassOf<class UCameraShake> ShakeClass;
 };
+
 UCLASS()
 class U03_GAME_API UCActionData : public UDataAsset
 {
 	GENERATED_BODY()
 
 public:
-	FORCEINLINE class ACEquipment* GetEquipment(){ return Equipment; }
+	FORCEINLINE class ACEquipment* GetEquipment() { return Equipment; }
+	FORCEINLINE class ACDoAction* GetDoAction() { return DoAction; }
 
 public:
-	void BeginPlay(class ACharacter* InOwnerCahracter);
+	void BeginPlay(class ACharacter* InOwnerCharacter);
 
 private:
 	FString GetLabelName(class ACharacter* InOwnerCharacter, FString InName);
-	
+
 public:
 	UPROPERTY(BlueprintReadOnly, EditAnywhere)
 		TSubclassOf<class ACAttachment> AttachmentClass;
@@ -72,6 +82,7 @@ public:
 
 	UPROPERTY(BlueprintReadOnly, EditAnywhere)
 		TArray<FDoActionData> DoActionDatas;
+	
 
 private:
 	class ACAttachment* Attachment;

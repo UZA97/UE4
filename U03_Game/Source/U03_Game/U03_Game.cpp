@@ -1,3 +1,5 @@
+// Copyright Epic Games, Inc. All Rights Reserved.
+
 #include "U03_Game.h"
 #include "Modules/ModuleManager.h"
 

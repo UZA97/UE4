@@ -7,7 +7,7 @@
 UENUM(BlueprintType)
 enum class EStateType : uint8
 {
-	IDLE, ROLL, BACKSTEP, EQUIP, MAX
+	Idle, Roll, Backstep, Equip, Action, Hitted, Dead, Max
 };
 
 DECLARE_DYNAMIC_MULTICAST_DELEGATE_TwoParams(FStateTypeChanged, EStateType, InPrevType, EStateType, InNewType);
@@ -18,22 +18,30 @@ class U03_GAME_API UCStateComponent : public UActorComponent
 	GENERATED_BODY()
 
 public:
-    UFUNCTION(BlueprintPure)
-		FORCEINLINE bool IsIdleMode() { return Type == EStateType::IDLE; }
 	UFUNCTION(BlueprintPure)
-		FORCEINLINE bool IsRollMode() { return Type == EStateType::ROLL; }
+		FORCEINLINE bool IsIdleMode() { return Type == EStateType::Idle; }
+
 	UFUNCTION(BlueprintPure)
-		FORCEINLINE bool IsBackstepMode() { return Type == EStateType::BACKSTEP; }
+		FORCEINLINE bool IsRollMode() { return Type == EStateType::Roll; }
+
 	UFUNCTION(BlueprintPure)
-		FORCEINLINE bool IsEquipMode() { return Type == EStateType::EQUIP; }
+		FORCEINLINE bool IsBackstepMode() { return Type == EStateType::Backstep; }
+
+	UFUNCTION(BlueprintPure)
+		FORCEINLINE bool IsEquipMode() { return Type == EStateType::Equip; }
+
+	UFUNCTION(BlueprintPure)
+		FORCEINLINE bool IsActionMode() { return Type == EStateType::Action; }
+
 
 public:	
 	UCStateComponent();
 
-	void SetIdleMode();
+	void SetIdelMode();
 	void SetRollMode();
 	void SetBackstepMode();
 	void SetEquipMode();
+	void SetActionMode();
 
 protected:
 	virtual void BeginPlay() override;
@@ -42,7 +50,7 @@ private:
 	void ChangeType(EStateType InNewType);
 
 public:
-    UPROPERTY(BlueprintAssignable)
+	UPROPERTY(BlueprintAssignable)
 		FStateTypeChanged OnStateTypeChanged;
 
 private:

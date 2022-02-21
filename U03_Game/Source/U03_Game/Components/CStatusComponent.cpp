@@ -1,14 +1,16 @@
 #include "CStatusComponent.h"
-#include "Global.h"
 
 UCStatusComponent::UCStatusComponent()
 {
 	PrimaryComponentTick.bCanEverTick = true;
+
 }
 
 void UCStatusComponent::BeginPlay()
 {
 	Super::BeginPlay();
+
+	Health = MaxHealth;
 }
 
 void UCStatusComponent::SetMove()
@@ -20,7 +22,3 @@ void UCStatusComponent::SetStop()
 {
 	bCanMove = false;
 }
-
-
-
-

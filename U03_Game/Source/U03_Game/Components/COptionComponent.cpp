@@ -2,7 +2,6 @@
 
 UCOptionComponent::UCOptionComponent()
 {
-	PrimaryComponentTick.bCanEverTick = true;
 
 }
 
@@ -10,7 +9,7 @@ UCOptionComponent::UCOptionComponent()
 void UCOptionComponent::BeginPlay()
 {
 	Super::BeginPlay();
-
+	
 }
 
 

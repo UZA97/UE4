@@ -4,28 +4,29 @@
 
 void UCAnimInstance::NativeBeginPlay()
 {
-    Super::NativeBeginPlay();
+	Super::NativeBeginPlay();
 
-    ACharacter* character = Cast<ACharacter>(TryGetPawnOwner());
-    CheckNull(character);
+	ACharacter* character = Cast<ACharacter>(TryGetPawnOwner());
+	CheckNull(character);
 
-    UCActionComponent* action = CHelpers::GetComponent<UCActionComponent>(character);
-    CheckNull(action);
+	UCActionComponent* action = CHelpers::GetComponent<UCActionComponent>(character);
+	CheckNull(action);
 
-    action->OnActionTypeChanged.AddDynamic(this, &UCAnimInstance::OnActionTypeChanged);
+	action->OnActionTypeChanged.AddDynamic(this, &UCAnimInstance::OnActionTypeChanged);
 }
+
 void UCAnimInstance::NativeUpdateAnimation(float DeltaSeconds)
 {
-    Super::NativeUpdateAnimation(DeltaSeconds);
+	Super::NativeUpdateAnimation(DeltaSeconds);
 
-    ACharacter* character = Cast<ACharacter>(TryGetPawnOwner());
-    CheckNull(character);
+	ACharacter* character = Cast<ACharacter>(TryGetPawnOwner());
+	CheckNull(character);
 
-    Speed = character->GetVelocity().Size2D();
-    Direction = CalculateDirection(character->GetVelocity(), character->GetControlRotation());
+	Speed = character->GetVelocity().Size2D();
+	Direction = CalculateDirection(character->GetVelocity(), character->GetControlRotation());
 }
 
 void UCAnimInstance::OnActionTypeChanged(EActionType InPreType, EActionType InNewType)
 {
-    ActionType = InNewType;
+	ActionType = InNewType;
 }

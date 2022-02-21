@@ -4,6 +4,7 @@
 #include "Components/ActorComponent.h"
 #include "CActionComponent.generated.h"
 
+
 UENUM(BlueprintType)
 enum class EActionType : uint8
 {
@@ -21,23 +22,31 @@ private:
 	UPROPERTY(EditDefaultsOnly)
 		class UCActionData* Datas[(int32)EActionType::Max];
 
+
+
 public:
-    UFUNCTION(BlueprintPure)
+	UFUNCTION(BlueprintPure)
 		FORCEINLINE class UCActionData* GetCurrent() { return Datas[(int32)Type]; }
 
 public:
-    UFUNCTION(BlueprintPure)
+	UFUNCTION(BlueprintPure)
 		FORCEINLINE bool IsUnarmedMode() { return Type == EActionType::Unarmed; }
+
 	UFUNCTION(BlueprintPure)
 		FORCEINLINE bool IsFistMode() { return Type == EActionType::Fist; }
+
 	UFUNCTION(BlueprintPure)
 		FORCEINLINE bool IsOneHandMode() { return Type == EActionType::OneHand; }
+
 	UFUNCTION(BlueprintPure)
-		FORCEINLINE bool IsTwoHandMode() { return Type == EActionType::TwoHand; }
+		FORCEINLINE bool IsOneTwoMode() { return Type == EActionType::TwoHand; }
+
 	UFUNCTION(BlueprintPure)
-		FORCEINLINE bool IsWarpMode() { return Type == EActionType::Warp; }
+		FORCEINLINE bool IsOneWarpMode() { return Type == EActionType::Warp; }
+
 	UFUNCTION(BlueprintPure)
 		FORCEINLINE bool IsTornadoMode() { return Type == EActionType::Tornado; }
+
 	UFUNCTION(BlueprintPure)
 		FORCEINLINE bool IsMagicBallMode() { return Type == EActionType::MagicBall; }
 
@@ -52,17 +61,20 @@ public:
 	void SetTornadoMode();
 	void SetMagicBallMode();
 
-protected:
-	virtual void BeginPlay() override;
+public:
+	void DoAction();
 
 private:
 	void SetMode(EActionType InType);
-	void ChangeType(EActionType InNewype);
+	void ChangeType(EActionType InNewType);
+
+protected:
+	virtual void BeginPlay() override;
+
 public:
-    UPROPERTY(BlueprintAssignable)
+	UPROPERTY(BlueprintAssignable)
 		FActionTypeChanged OnActionTypeChanged;
 
 private:
 	EActionType Type;
-		
 };

@@ -9,9 +9,10 @@ UCLASS()
 class U03_GAME_API ACDoAction : public AActor
 {
 	GENERATED_BODY()
-	
+
 public:
 	FORCEINLINE void SetDatas(TArray<FDoActionData> InDatas) { Datas = InDatas; }
+	
 public:	
 	ACDoAction();
 
@@ -20,11 +21,20 @@ public:
 	virtual void Begin_DoAction() {}
 	virtual void End_DoAction() {}
 
+public:
+	UFUNCTION()
+		virtual void OnAttachmentBeginOverlap(class ACharacter* InAttacker, class AActor* InCauser, class ACharacter* InOtherChracter) {}
+
+	UFUNCTION()
+		virtual void OnAttachmentEndOverlap(class ACharacter* InAttacker, class AActor* InCauser, class ACharacter* InOtherChracter) {}
+
 protected:
 	virtual void BeginPlay() override;
 
 public:	
 	virtual void Tick(float DeltaTime) override;
+
+
 protected:
 	UPROPERTY(BlueprintReadOnly)
 		class ACharacter* OwnerCharacter;
@@ -37,5 +47,4 @@ protected:
 
 protected:
 	TArray<FDoActionData> Datas;
-
 };
