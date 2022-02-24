@@ -19,6 +19,10 @@ public:
 	virtual void Tick(float DeltaTime) override;
 	virtual void OnAim() override;
 	virtual void OffAim() override;
+
+private:
+	UFUNCTION()
+		void OnThrowBeginOverlap(FHitResult InHitResult);
 private:
     UPROPERTY()
 		class UCAim* Aim;

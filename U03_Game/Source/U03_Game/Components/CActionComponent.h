@@ -63,6 +63,8 @@ public:
 
 public:
 	void DoAction();
+	void DoOnAim();
+	void DoOffAim();
 
 private:
 	void SetMode(EActionType InType);
