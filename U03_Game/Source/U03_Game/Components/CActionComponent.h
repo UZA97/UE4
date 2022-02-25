@@ -51,13 +51,13 @@ public:
 public:	
 	UCActionComponent();
 
-	void SetUnarmedMode();
-	void SetFistMode();
-	void SetOneHandMode();
-	void SetTwoHandMode();
-	void SetWarpMode();
-	void SetTornadoMode();
-	void SetMagicBallMode();
+    UFUNCTION(BlueprintCallable)	void SetUnarmedMode();
+	UFUNCTION(BlueprintCallable)	void SetFistMode();
+	UFUNCTION(BlueprintCallable)	void SetOneHandMode();
+	UFUNCTION(BlueprintCallable)	void SetTwoHandMode();
+	UFUNCTION(BlueprintCallable)	void SetWarpMode();
+	UFUNCTION(BlueprintCallable)	void SetTornadoMode();
+	UFUNCTION(BlueprintCallable)	void SetMagicBallMode();
 
 	void OffAllCollisions();
 
