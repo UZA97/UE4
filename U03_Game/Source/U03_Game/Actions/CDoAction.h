@@ -22,8 +22,9 @@ public:
 	virtual void Begin_DoAction() {}
 	virtual void End_DoAction() {}
 
-	virtual void OnAim() {}
-	virtual void OffAim() {}
+	virtual void OnAim() {};
+	virtual void OffAim() {};
+
 public:
 	UFUNCTION()
 		virtual void OnAttachmentBeginOverlap(class ACharacter* InAttacker, class AActor* InCauser, class ACharacter* InOtherChracter) {}
@@ -51,6 +52,4 @@ protected:
 protected:
 	TArray<FDoActionData> Datas;
 	const bool* bEquipped;
-
-
 };

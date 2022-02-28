@@ -27,8 +27,8 @@ private:
 	UPROPERTY(VisibleDefaultsOnly)
 		class UProjectileMovementComponent* Projectile;
 
-
-public:
+	
+public:	
 	ACThrow();
 
 protected:

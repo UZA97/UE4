@@ -56,11 +56,13 @@ void ACEquipment::End_Equip_Implementation()
 	State->SetIdelMode();
 
 	bEquipped = true;
+
 }
 
 void ACEquipment::Unequip_Implementation()
 {
 	bEquipped = false;
+
 
 	OwnerCharacter->GetCharacterMovement()->bOrientRotationToMovement = true;
 	OwnerCharacter->bUseControllerRotationYaw = false;

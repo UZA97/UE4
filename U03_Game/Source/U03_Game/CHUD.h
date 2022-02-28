@@ -12,9 +12,11 @@ class U03_GAME_API ACHUD : public AHUD
 private:
 	UPROPERTY(EditDefaultsOnly)
 		class UTexture2D* Texture;
+
 public:
 	FORCEINLINE void OnDraw() { bDraw = true; }
 	FORCEINLINE void OffDraw() { bDraw = false; }
+	
 public:
 	ACHUD();
 

@@ -23,7 +23,7 @@ private:
 		class UWidgetComponent* HealthWidget;
 
 protected:
-    UPROPERTY(BlueprintReadOnly, VisibleDefaultsOnly)
+	UPROPERTY(BlueprintReadOnly, VisibleDefaultsOnly)
 		class UCActionComponent* Action;
 
 private:

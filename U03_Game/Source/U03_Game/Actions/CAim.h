@@ -30,7 +30,7 @@ public:
 private:
 	UFUNCTION()
 		void Zooming(float Output);
-
+	
 private:
 	class ACharacter* OwnerCharacter;
 	class UCStateComponent* State;

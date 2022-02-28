@@ -20,7 +20,7 @@ ACThrow::ACThrow()
 void ACThrow::BeginPlay()
 {
 	Super::BeginPlay();
-
+	
 	Sphere->OnComponentBeginOverlap.AddDynamic(this, &ACThrow::OnComponentBeginOverlap);
 }
 
@@ -41,3 +41,5 @@ void ACThrow::OnComponentBeginOverlap(UPrimitiveComponent* OverlappedComponent, 
 
 	Destroy();
 }
+
+

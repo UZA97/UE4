@@ -15,10 +15,11 @@ protected:
 public:
 	virtual void DoAction() override;
 	virtual void Begin_DoAction() override;
-	virtual void End_DoAction() override;	
-
+	virtual void End_DoAction() override;
+	
 public:
 	virtual void Tick(float DeltaTime) override;
+
 
 private:
 	bool GetCursorLocationAndRotation(FVector& OutLocation, FRotator& OutRotation);

@@ -23,7 +23,7 @@ void ACDoAction_Throw::DoAction()
 
 	if (Aim->IsAvaliable())
 		CheckFalse(Aim->IsInZoom());
-
+	
 	CheckFalse(State->IsIdleMode());
 	State->SetActionMode();
 
@@ -78,6 +78,7 @@ void ACDoAction_Throw::OnThrowBeginOverlap(FHitResult InHitResult)
 	FDamageEvent e;
 	InHitResult.GetActor()->TakeDamage(Datas[0].Power, e, OwnerCharacter->GetController(), this);
 }
+
 void ACDoAction_Throw::AbortByTypeChanged(EActionType InPrevType, EActionType InNewType)
 {
 	CheckFalse(Aim->IsAvaliable());
