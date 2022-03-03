@@ -5,9 +5,9 @@
 #include "CStatusComponent.generated.h"
 
 UENUM(BlueprintType)
-enum class ECharacterSpeed: uint8
+enum class ECharacterSpeed : uint8
 {
-	Sneak, Walk, Sprint, Max
+	Sneak, Walk, Sprint, Max,
 };
 
 UCLASS( ClassGroup=(Custom), meta=(BlueprintSpawnableComponent) )
@@ -20,16 +20,15 @@ private:
 		float MaxHealth = 100.f;
 
 	UPROPERTY(EditAnywhere, Category = "Speed")
-		float Speed[(int)ECharacterSpeed::Max] = { 200.f, 400.0f, 600.0f };
-
-
+		float Speed[(int32)ECharacterSpeed::Max] = { 200, 400, 600 };
+	
 public:
 	FORCEINLINE float GetMaxHealth() { return MaxHealth; }
 	FORCEINLINE float GetHealth() { return Health; }
 
-	FORCEINLINE float GetSneakSpeed() { return Speed[(int)ECharacterSpeed::Sneak]; }
-	FORCEINLINE float GetWalkSpeed() { return Speed[(int)ECharacterSpeed::Walk]; }
-	FORCEINLINE float GetSprintSpeed() { return Speed[(int)ECharacterSpeed::Sprint]; }
+	FORCEINLINE float GetSneakSpeed() { return Speed[(int32)ECharacterSpeed::Sneak]; }
+	FORCEINLINE float GetWalkSpeed() { return Speed[(int32)ECharacterSpeed::Walk]; }
+	FORCEINLINE float GetSprintSpeed() { return Speed[(int32)ECharacterSpeed::Sprint]; }
 
 	FORCEINLINE bool CanMove() { return bCanMove; }
 

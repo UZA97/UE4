@@ -5,20 +5,20 @@
 
 UCBTTaskNode_Speed::UCBTTaskNode_Speed()
 {
-    NodeName = "Speed";
+	NodeName = "Speed";
 }
 
 EBTNodeResult::Type UCBTTaskNode_Speed::ExecuteTask(UBehaviorTreeComponent& OwnerComp, uint8* NodeMemory)
 {
-    Super::ExecuteTask(OwnerComp, NodeMemory);
+	Super::ExecuteTask(OwnerComp, NodeMemory);
 
-    ACAIController* controller = Cast<ACAIController>(OwnerComp.GetOwner());
-    CheckNullResult(controller, EBTNodeResult::Failed);
+	ACAIController* controller = Cast<ACAIController>(OwnerComp.GetOwner());
+	CheckNullResult(controller, EBTNodeResult::Failed);
 
-    ACEnemy_AI* aiPawn = Cast< ACEnemy_AI>(controller->GetPawn());
-    UCStatusComponent* status = CHelpers::GetComponent<UCStatusComponent>(aiPawn);
+	ACEnemy_AI* aiPawn = Cast<ACEnemy_AI>(controller->GetPawn());
+	UCStatusComponent* status = CHelpers::GetComponent<UCStatusComponent>(aiPawn);
 
-    status->SetSpeed(Type);
+	status->SetSpeed(Type);
 
-    return EBTNodeResult::Succeeded;
+	return EBTNodeResult::Succeeded;
 }

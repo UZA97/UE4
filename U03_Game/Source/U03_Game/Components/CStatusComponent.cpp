@@ -5,6 +5,7 @@
 UCStatusComponent::UCStatusComponent()
 {
 	PrimaryComponentTick.bCanEverTick = true;
+
 }
 
 void UCStatusComponent::AddHealth(float InAmount)
@@ -38,6 +39,6 @@ void UCStatusComponent::SetStop()
 
 void UCStatusComponent::SetSpeed(ECharacterSpeed InSpeed)
 {
-	UCharacterMovementComponent* movement =  CHelpers::GetComponent<UCharacterMovementComponent>(GetOwner());
+	UCharacterMovementComponent* movement = CHelpers::GetComponent<UCharacterMovementComponent>(GetOwner());
 	movement->MaxWalkSpeed = Speed[(int32)InSpeed];
 }

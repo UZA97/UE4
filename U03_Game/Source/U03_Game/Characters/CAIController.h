@@ -29,16 +29,17 @@ public:
 	virtual void Tick(float DeltaTime) override;
 
 	float GetSightRadius();
+
 protected:
 	virtual void BeginPlay() override;
 
 	virtual void OnPossess(APawn* InPawn) override;
 	virtual void OnUnPossess() override;
 
-
 private:
 	UFUNCTION()
-		void OnPerceptionUpdated(const TArray<AActor*>&UpdatedActors);
+		void OnPerceptionUpdated(const TArray<AActor*>& UpdatedActors);
+
 private:
 	class ACEnemy_AI* OwnerEnemy;
 	class UAISenseConfig_Sight* Sight;

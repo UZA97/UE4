@@ -66,7 +66,7 @@ void ACAIController::OnUnPossess()
 	Perception->OnPerceptionUpdated.Clear();
 }
 
-void ACAIController::OnPerceptionUpdated(const TArray<AActor*>&UpdatedActors)
+void ACAIController::OnPerceptionUpdated(const TArray<AActor*>& UpdatedActors)
 {
 	TArray<AActor*> actors;
 	Perception->GetCurrentlyPerceivedActors(nullptr, actors);
@@ -75,8 +75,11 @@ void ACAIController::OnPerceptionUpdated(const TArray<AActor*>&UpdatedActors)
 	for (AActor* actor : actors)
 	{
 		player = Cast<ACPlayer>(actor);
+
 		if (!!player)
 			break;
 	}
+
 	Blackboard->SetValueAsObject("Player", player);
+
 }

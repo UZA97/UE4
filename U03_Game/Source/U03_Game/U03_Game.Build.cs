@@ -12,7 +12,7 @@ public class U03_Game : ModuleRules
 			"CoreUObject",
 			"Engine",
 			"InputCore",
-			"AIModule" ,
+			"AIModule",
 			"GameplayTasks",
 		});
 

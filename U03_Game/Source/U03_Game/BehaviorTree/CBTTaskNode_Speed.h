@@ -9,15 +9,14 @@ UCLASS()
 class U03_GAME_API UCBTTaskNode_Speed : public UBTTaskNode
 {
 	GENERATED_BODY()
-	
+
 private:
 	UPROPERTY(EditAnywhere)
 		ECharacterSpeed Type;
 
 public:
 	UCBTTaskNode_Speed();
-
+	
 protected:
-	virtual EBTNodeResult::Type ExecuteTask(UBehaviorTreeComponent& OwnerComp, uint8* NodeMemory);
-
+	virtual EBTNodeResult::Type ExecuteTask(UBehaviorTreeComponent& OwnerComp, uint8* NodeMemory) override;
 };
