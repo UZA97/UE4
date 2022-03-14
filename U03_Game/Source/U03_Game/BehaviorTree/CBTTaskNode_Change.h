@@ -10,18 +10,17 @@ class U03_GAME_API UCBTTaskNode_Change : public UBTTaskNode
 {
 	GENERATED_BODY()
 
-public:
-	UCBTTaskNode_Change();
 private:
 	UPROPERTY(EditAnywhere)
 		EActionType Type;
 
+public:
+	UCBTTaskNode_Change();
 
 protected:
 	virtual EBTNodeResult::Type ExecuteTask(UBehaviorTreeComponent& OwnerComp, uint8* NodeMemory) override;
 
 public:
 	virtual void TickTask(UBehaviorTreeComponent& OwnerComp, uint8* NodeMemory, float DeltaSeconds) override;
-
-
+	
 };

@@ -6,6 +6,7 @@
 #include "Components/CStatusComponent.h"
 #include "Components/CBehaviorComponent.h"
 #include "Components/DecalComponent.h"
+#include "Components/CapsuleComponent.h"
 #include "GameFramework/Character.h"
 #include "AIController.h"
 
@@ -20,7 +21,9 @@ void ACDoAction_Warp::BeginPlay()
 			Decal = CHelpers::GetComponent<UDecalComponent>(actor);
 			break;
 		}
-	}	
+	}
+
+	
 }
 
 void ACDoAction_Warp::DoAction()
@@ -33,13 +36,14 @@ void ACDoAction_Warp::DoAction()
 	if (UseCursorLocation())
 	{
 		FRotator rotation;
-		CheckFalse(GetCursorLocationAndRotation(Location, rotation));		
+		CheckFalse(GetCursorLocationAndRotation(Location, rotation));
 	}
 	else
 	{
 		AAIController* controller = OwnerCharacter->GetController<AAIController>();
 		UCBehaviorComponent* behavior = CHelpers::GetComponent<UCBehaviorComponent>(controller);
-		behavior->GetWaprLocation();
+
+		Location = behavior->GetWaprLocation();
 		Decal->SetVisibility(false);
 	}
 	
@@ -93,7 +97,6 @@ void ACDoAction_Warp::Tick(float DeltaTime)
 
 ACPlayer* ACDoAction_Warp::UseCursorLocation()
 {
-
 	return Cast<ACPlayer>(OwnerCharacter);
 }
 
@@ -108,9 +111,11 @@ bool ACDoAction_Warp::GetCursorLocationAndRotation(FVector& OutLocation, FRotato
 	if (controller->GetHitResultUnderCursorForObjects(objects, true, hitResult))
 	{
 		OutLocation = hitResult.ImpactPoint;
+		OutLocation.Z += 20.0f;
 		OutRotation = hitResult.ImpactNormal.Rotation();
 
 		return true;
 	}
+
 	return false;
 }

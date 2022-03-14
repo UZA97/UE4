@@ -16,8 +16,17 @@ private:
 	UPROPERTY(EditDefaultsOnly, Category = "TeamID")
 		uint8 TeamID = 0;
 
+private:
+	UPROPERTY(EditDefaultsOnly, Category = "Widgets")
+		TSubclassOf<class UCUserWidget_Select> SelectWidgetClass;
+
+public:
+	class UCUserWidget_Select* GetSelectWidget() { return SelectWidget; }
+
 public:
 	ACPlayer();
+
+	virtual float TakeDamage(float Damage, struct FDamageEvent const& DamageEvent, AController* EventInstigator, AActor* DamageCauser) override;
 
 private: //SceneComponent
 	UPROPERTY(VisibleDefaultsOnly)
@@ -56,6 +65,7 @@ private: //AxisEvent
 	void OnMoveRight(float Axis);
 	void OnHorizontalLook(float Axis);
 	void OnVerticalLook(float Axis);
+	void OnZoom(float Axis);
 
 
 private: //ActionEvent
@@ -64,16 +74,20 @@ private: //ActionEvent
 
 	void OnEvade();
 
-	void OnFist();
-	void OnOneHand();
-	void OnTwoHand();
-	void OnMagicBall();
-	void OnWarp();
+	UFUNCTION() void OnFist();
+	UFUNCTION() void OnOneHand();
+	UFUNCTION() void OnTwoHand();
+	UFUNCTION() void OnMagicBall();
+	UFUNCTION() void OnWarp();
+	UFUNCTION() void OnTornado();
 
 	void OnDoAction();
 
 	void OnAim();
 	void OffAim();
+
+	void OnSelectAction();
+	void OffSelectAction();
 
 private:
 	void Begin_Backstep();
@@ -82,6 +96,11 @@ private:
 public:
 	void End_Backstep();
 	void End_Roll();
+
+private:
+	void Hitted();
+	void Dead();
+	void End_Dead() override;
 
 public:
 	virtual void ChangeColor(FLinearColor InColor);
@@ -93,4 +112,11 @@ private:
 private:
 	class UMaterialInstanceDynamic* BodyMaterial;
 	class UMaterialInstanceDynamic* LogoMaterial;
+
+private:
+	class AController* DamageInstigator;
+
+protected:
+	UPROPERTY(BlueprintReadOnly)
+		class UCUserWidget_Select* SelectWidget;
 };

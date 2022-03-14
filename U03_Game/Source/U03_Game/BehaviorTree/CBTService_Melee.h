@@ -9,12 +9,9 @@ class U03_GAME_API UCBTService_Melee : public UBTService
 {
 	GENERATED_BODY()
 
-
-
 public:
 	UCBTService_Melee();
 
 protected:
 	virtual void TickNode(UBehaviorTreeComponent& OwnerComp, uint8* NodeMemory, float DeltaSeconds) override;
-	
 };

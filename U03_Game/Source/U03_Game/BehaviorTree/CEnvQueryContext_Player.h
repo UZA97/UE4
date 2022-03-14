@@ -11,6 +11,4 @@ class U03_GAME_API UCEnvQueryContext_Player : public UEnvQueryContext
 	
 private:
 	virtual void ProvideContext(FEnvQueryInstance& QueryInstance, FEnvQueryContextData& ContextData) const override;
-
-
 };
