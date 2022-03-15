@@ -9,10 +9,23 @@ UCLASS()
 class U03_GAME_API ACCameraActor : public AActor
 {
 	GENERATED_BODY()
-	
+
+private:
+	UPROPERTY(VisibleDefaultsOnly)
+		class UCameraComponent* Camera;
+
 public:	
 	ACCameraActor();
 
+public:
+	UFUNCTION(BlueprintCallable)
+		void StartTimeline();
+
+private:
+	UFUNCTION()
+		void OnProgress(float Output);
+	UFUNCTION(BlueprintCallable)
+		void OnFinishProgress();
 protected:
 	virtual void BeginPlay() override;
 
@@ -21,4 +34,5 @@ public:
 
 private:
 	FTimeline Timeline;
+	class ACCameraSpline* Spline;
 };
